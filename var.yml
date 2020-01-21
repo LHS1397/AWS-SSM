@@ -1,0 +1,9 @@
+---
+
+## Variables for installing SSM agent on Ubuntu
+
+# Directory in which package will be installed
+temp_ssm: "/tmp/ssm" 
+
+# URL from package will be downloaded. 
+ssm_url_deb: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb"
