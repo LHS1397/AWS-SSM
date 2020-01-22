@@ -1,0 +1,33 @@
+---
+- name: Add group "patching" to remote server
+  group:
+    name: patching
+    gid: 2010
+    state: present
+      
+- name: Add user "unixops" to remote server
+  user:
+    name: unixops
+    comment: "Privileged User"
+    uid: 2001
+    group: wheel
+    groups: patching
+    append: yes
+    shell: /bin/bash
+    password: 'G1ttyUp!'
+    state: present
+  when: ansible_os_family == 'RedHat'
+    
+- name: Add user "unixops" to remote server
+  user:
+    name: unixops
+    comment: "Privileged User"
+    uid: 2001
+    group: sudo 
+    groups: patching
+    append: yes
+    shell: /bin/bash
+    password: 'G1ttyUp!'
+    state: present
+  when: ansible_os_family == 'Debian'
+  

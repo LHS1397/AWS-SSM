@@ -16,6 +16,7 @@
     shell: /bin/bash
     password: 'G1ttyUp!'
     expires: 1525198731
+    state: present
   when: ansible_os_family == 'RedHat'
     
 - name: Add user "Unixops" to remote server
@@ -29,5 +30,6 @@
     shell: /bin/bash
     password: 'G1ttyUp!'
     expires: 1525198731
+    state: present
   when: ansible_os_family == 'Debian'
   
