@@ -1,8 +1,10 @@
 ---
 - name: Getting Details of the Maintainance Window
   ec2_tag:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
     region: eu-west-1
-    resource: *
+    resource: i-00549f135fbdf131f
     state: list
     tags:
       MaintainanceWindow: "{{ date }}"
@@ -10,6 +12,8 @@
      
 - name: Patching Group
   ec2_tag:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
     region: eu-west-1
     resource: resource
     state: present

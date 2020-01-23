@@ -1,6 +1,10 @@
 ---
 - hosts: servers
-  remote_user: root
+  #connection: servers
+  #remote_user: ec2-user
   roles:
-      - users
-      - ssm
+    #  - users
+    # - ssm
+    - ec2
+  vars_files:
+    - aws_keys.yml
