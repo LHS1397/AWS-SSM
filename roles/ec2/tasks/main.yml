@@ -1,0 +1,17 @@
+---
+- name: Getting Details of the Maintainance Window
+  ec2_tag:
+    region: eu-west-1
+    resource: *
+    state: list
+    tags:
+      MaintainanceWindow: "{{ date }}"
+    register: resource
+     
+- name: Patching Group
+  ec2_tag:
+    region: eu-west-1
+    resource: resource
+    state: present
+    tags:
+      env_patch: prod_patch
