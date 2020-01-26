@@ -1,10 +1,8 @@
 ---
-- hosts: servers
-  #connection: servers
-  remote_user: ec2-user
+- hosts: local
+  connection: local
+  gather_facts: False
   roles:
-    #  - users
-    # - ssm
     - ec2
-  vars_files:
-    - aws_keys.yml
+
+- import_playbook: ssm-manage.yml

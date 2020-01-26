@@ -1,21 +1,17 @@
 ---
-- name: Getting Details of the Maintainance Window
-  ec2_tag:
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    region: eu-west-1
-    resource: i-00549f135fbdf131f
-    state: list
-    tags:
-      MaintainanceWindow: "{{ date }}"
-    register: resource
-     
+- ec2_instance_facts:
+    region: us-east-1
+    filters:
+      "tag:MaintainanceWindow": 3rdMon6pm
+  register: instanceId
+- debug: var=instanceId.instances[1].instance_id
+
 - name: Patching Group
   ec2_tag:
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    region: eu-west-1
-    resource: resource
+    #aws_access_key: "{{ aws_access_key }}"
+    #aws_secret_key: "{{ aws_secret_key }}"
+    region: us-east-1
+    resource: "{{ instanceId.instances[1].instance_id }}"
     state: present
     tags:
       env_patch: prod_patch

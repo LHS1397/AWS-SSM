@@ -1,0 +1,5 @@
+---
+# tasks file for s3
+- s3_bucket:
+    name: hawx0907new
+    state: present
