@@ -1,3 +1,6 @@
-[servers]
+[local]
 localhost
+
+[servers]
+10.168.0.155
 
