@@ -2,5 +2,11 @@
 localhost
 
 [servers]
-10.168.0.155
+192.168.1.202
+
+[servers:vars]
+ansible_password=lovi@123
+
+[ssm]
+ec2-instance ansible_ssh_host=15.206.74.38 ansible_user=ec2-user ansible_ssh_private_key_file=/home/hawx/Downloads/AWS-SSM-KP-TEST.pem
 

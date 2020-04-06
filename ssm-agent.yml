@@ -6,3 +6,6 @@
     - ec2
 
 - import_playbook: ssm-manage.yml
+
+vars_files:
+ - 

@@ -1,11 +1,15 @@
 ---
 - name: Add group "patching" to remote server
+  become: yes
+  become_user: root
   group:
     name: patching
     gid: 2010
     state: present
       
 - name: Add user "unixops" to remote server
+  become: yes
+  become_user: root
   user:
     name: unixops
     comment: "Privileged User"
@@ -14,11 +18,13 @@
     groups: patching
     append: yes
     shell: /bin/bash
-    password: 'G1ttyUp!'
+    password: "{{ password }}"
     state: present
   when: ansible_os_family == 'RedHat'
     
 - name: Add user "unixops" to remote server
+  become: yes
+  become_user: root
   user:
     name: unixops
     comment: "Privileged User"
@@ -27,7 +33,15 @@
     groups: patching
     append: yes
     shell: /bin/bash
-    password: 'G1ttyUp!'
+    password: "{{ password }}"
     state: present
   when: ansible_os_family == 'Debian'
   
+- name: Setting permissions in Sudoers file
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /etc/sudoers
+    line: '%patching ALL=(ALL:ALL) ALL'
+    create: yes
+
